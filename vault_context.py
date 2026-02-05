@@ -51,7 +51,7 @@ class VaultContext:
     
     def handle_breach(self):
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print("[SECURITY ALERT] HONEYPOT TRIGGERED!")
+        print("HONEYPOT TRIGGERED!")
         print("Initiating EMERGENCY LOCKDOWN!!!")
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         

@@ -10,7 +10,7 @@ class CryptoService:
     It is stateless: it receives a key for each operation and does not store it.
     """
 
-    #רשימת קבצים לא להצפנה
+    
     IGNORE_FILES = [
         "main_gui.py", "vault_context.py", "services.py", "states.py", "interfaces.py", 
         "usb.key", "secret.key", 
@@ -30,11 +30,7 @@ class CryptoService:
         self._iterate_files(folder_path, key, mode="decrypt")
 
     def _iterate_files(self, folder_path: str, key: bytes, mode: str) -> None:
-        """
-        Internal Helper: Contains the loop logic (DRY Principle).
-        מונע שכפול קוד בין הצפנה לפענוח - הלולאה היא אותה לולאה.
-        """
-        # os.walk - פונקציה שסורקת את כל התיקיות ותתי-התיקיות
+        # Scan all folders and files
         for root, dirs, files in os.walk(folder_path):
             for file_name in files:
                 
@@ -49,7 +45,6 @@ class CryptoService:
     def _process_file(self, file_path: str, key: bytes, mode: str) -> None:
         """
         Internal Helper: Performs the actual IO and Cryptography on a single file.
-        מבצעת את הקריאה מהדיסק, הפעולה המתמטית, והכתיבה חזרה.
         """
         try:
             fernet = Fernet(key)
