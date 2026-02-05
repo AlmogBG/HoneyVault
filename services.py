@@ -144,7 +144,7 @@ class HoneyMonitor:
             print("[MONITOR] Observer stopped.")
     
     def remove_decoys(self, folder_path):
-        """מוחקת את המלכודות כשהתוכנה נסגרת"""
+        """Deletes the traps when the software closes."""
         print(f"--- Cleaning up decoys in {folder_path} ---")
         for file_name in self.decoys:
             full_path = os.path.join(folder_path, file_name)
