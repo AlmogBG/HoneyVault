@@ -2,6 +2,7 @@ import os
 import time
 from services import CryptoService, KeyManager, HoneyMonitor
 
+
 class VaultContext:
     def __init__(self):
         self.root_folder = None
