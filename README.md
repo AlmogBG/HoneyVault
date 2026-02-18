@@ -37,3 +37,7 @@ The system follows a modular design to ensure clear separation of concerns:
 1. **Clone the repository**:
    ```bash
    git clone [https://github.com/AlmogBG/HoneyVault.git](https://github.com/AlmogBG/HoneyVault.git)
+2. **Install dependencies**:
+    pip install cryptography watchdog
+3. **Run application**:
+    python main.py
