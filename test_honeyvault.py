@@ -9,7 +9,7 @@ class TestHoneyVault(unittest.TestCase):
     def setUp(self):
         """
        This function runs before each test.
-It prepares a temporary test folder and a dummy file.
+        It prepares a temporary test folder and a dummy file.
         """
         self.test_dir = "test_env"
         os.makedirs(self.test_dir, exist_ok=True)
@@ -26,7 +26,7 @@ It prepares a temporary test folder and a dummy file.
 
     def tearDown(self):
         """This function runs after each test.
-It deletes all temporary files we created (cleanup)."""
+        It deletes all temporary files we created (cleanup)."""
         if os.path.exists(self.test_dir):
             shutil.rmtree(self.test_dir)
 

@@ -1,7 +1,6 @@
-import os
-import time
-from services import CryptoService, KeyManager, HoneyMonitor
 
+from services import CryptoService, KeyManager, HoneyMonitor
+from tkinter import  messagebox
 
 class VaultContext:
     def __init__(self):
@@ -87,5 +86,6 @@ class VaultContext:
             self.crypto.encrypt_folder(self.root_folder, key)
             self.is_locked = True
             print("[DEFENSE] Threat neutralized. Vault is now LOCKED.")
+            messagebox.showinfo("Emergancy Lockdown", "Someone trying to open trap Vault Closed")
         except Exception as e:
             print(f"ERROR in Lockdown: {e}")
