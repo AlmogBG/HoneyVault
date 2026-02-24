@@ -1,9 +1,7 @@
 import os
 from cryptography.fernet import Fernet
-import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-import datetime
 class CryptoService:
     """
     Service responsible for the low-level encryption and decryption of files.
@@ -12,7 +10,7 @@ class CryptoService:
 
     
     IGNORE_FILES = [
-        "main_gui.py", "vault_context.py", "services.py", "states.py", "interfaces.py", 
+        "main.py", "vault_context.py", "services.py", "interfaces.py", 
         "usb.key", "secret.key", 
         ".DS_Store" 
     ]
@@ -127,7 +125,7 @@ class HoneyMonitor:
                     print(f"[HONEYPOT] Deployed trap: {file_name}")
     
     def start_monitoring(self, folder_path, callback):
-        print(f"[MONITOR] Started watching: {folder_path}")
+        print(f"[MONITOR] Started watching: {os.path.basename(folder_path)}")
         
         event_handler = TrapHandler(self.decoys, callback)
         self.observer = Observer()
@@ -145,7 +143,7 @@ class HoneyMonitor:
     
     def remove_decoys(self, folder_path):
         """Deletes the traps when the software closes."""
-        print(f"--- Cleaning up decoys in {folder_path} ---")
+        print(f"--- Cleaning up decoys in {os.path.basename(folder_path)} ---")
         for file_name in self.decoys:
             full_path = os.path.join(folder_path, file_name)
             try:

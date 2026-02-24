@@ -7,7 +7,7 @@ class VaultApp:
         self.root = root
         self.root.title("Secure HoneyVault")
         self.root.geometry("400x250")
-        self.vault = VaultContext()
+        self.vault = VaultContext(self)
         
         self.create_widgets()
 
@@ -29,7 +29,8 @@ class VaultApp:
         if path:
             self.vault.set_vault_path(path)
             self.vault.start_protection()
-            self.status_label.config(text=f"Selected: {path}")
+            folder_name = os.path.basename(path)
+            self.status_label.config(text=f"Selected: {folder_name}")
             messagebox.showinfo("Ready", "Folder selected & Honey Traps deployed!")
 
     def perform_lock(self):

@@ -1,11 +1,14 @@
 
+import os
+
 from services import CryptoService, KeyManager, HoneyMonitor
 from tkinter import  messagebox
 
 class VaultContext:
-    def __init__(self):
+    def __init__(self, app_instance):
         self.root_folder = None
         self.is_locked = True
+        self.app = app_instance
         self.crypto = CryptoService()
         self.key_manager = KeyManager()
         self.monitor = HoneyMonitor()
@@ -69,12 +72,13 @@ class VaultContext:
         
         if self.root_folder:
             try:
-                print(f"Removing decoys from: {self.root_folder}")
+                print(f"Removing decoys from: {os.path.basename(self.root_folder)}")
                 self.monitor.remove_decoys(self.root_folder)
             except Exception as e:
                 print(f"Cleanup error: {e}")
 
     def emergency_lockdown(self):
+        from main import VaultApp
         print("--- PANIC MODE: LOCKING EVERYTHING ---")
         if self.monitor:
             self.monitor.stop_monitoring(allow_join=False)
@@ -86,6 +90,6 @@ class VaultContext:
             self.crypto.encrypt_folder(self.root_folder, key)
             self.is_locked = True
             print("[DEFENSE] Threat neutralized. Vault is now LOCKED.")
-            messagebox.showinfo("Emergancy Lockdown", "Someone trying to open trap Vault Closed")
+            messagebox.showinfo("Emergancy Lockdown", "Someone trying to open trap Vault Closed",parent=self.app.root)
         except Exception as e:
             print(f"ERROR in Lockdown: {e}")
